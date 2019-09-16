@@ -3,5 +3,8 @@
         "url": "https://ernie.aws.chdev.org/",
         "user_email": "demo@ch.gov.uk",
         "user_password": "password"
-    }
+    },
+
+    "chromeWebSecurity": false
+
 }

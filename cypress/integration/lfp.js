@@ -15,15 +15,16 @@ describe('Successful pay of LFP', function() {
     cy.log('Start test')
 
     // Go to Late Filing Penalty Lookup
-    cy.get('#next-button').wait(10000).click()
+    cy.get('#next-button').click()
 
     // Log in with demo user
     cy.get('#signin_email').type(Cypress.env('user_email'))
-    .get('#password').type(Cypress.env('user_password' + '{enter}'))
+    .get('#password').type(Cypress.env('user_password'))
+    .get('#submit').click()
 
     // Enter transaction details
     cy.get('#company-ref').type('10000025')
-    .get('penalty-ref').type('00378425' + '{enter}')
+    .get('#penalty-ref').type('00378425{enter}')
 
     // Follow process for making payment
     cy.get('#next-button').click()
