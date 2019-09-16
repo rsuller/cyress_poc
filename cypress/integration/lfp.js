@@ -6,15 +6,21 @@ beforeEach(function() {
     cy.log('Opening Late Filing Penalties')
     cy.visit(url + 'late-filing-penalty')
 
+})
+
+describe('Successful pay of LFP', function() {
+    it('Complete LFP payment', function() {
+
+    // Start test
+    cy.log('Start test')
+
     // Go to Late Filing Penalty Lookup
-    cy.get('#next-button').click()
+    cy.get('#next-button').wait(10000).click()
 
     // Log in with demo user
     cy.get('#signin_email').type(Cypress.env('user_email'))
     .get('#password').type(Cypress.env('user_password' + '{enter}'))
-})
 
-describe('Successful pay of LFP', function() {
     // Enter transaction details
     cy.get('#company-ref').type('10000025')
     .get('penalty-ref').type('00378425' + '{enter}')
@@ -41,6 +47,6 @@ describe('Successful pay of LFP', function() {
 
     cy.get('.govuk-panel__title').should('have.value', 'Payment received')
 
-
+    })
 
 })
