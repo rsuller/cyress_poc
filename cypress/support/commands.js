@@ -35,3 +35,8 @@ Cypress.Commands.add(
         expect(text).to.contain(expectedText);
     }
 );
+
+Cypress.Commands.add('enterTransactionDetails', (companyNumber, penaltyReference) => {
+    cy.get('#company-ref').type(companyNumber)
+        .get('#penalty-ref').type(penaltyReference + '{enter}')
+});

@@ -26,8 +26,7 @@ describe('LFP Payment UI testing', function() {
     it('Successful LFP payment', function() {
 
     // Enter transaction details
-    cy.get('#company-ref').type('10000025')
-    .get('#penalty-ref').type('00378425{enter}')
+    cy.enterTransactionDetails('10000025', '00378425')
 
     // Follow process for making payment
     cy.get('#next-button').click()
@@ -60,75 +59,65 @@ describe('LFP Payment UI testing', function() {
 
     it('Transaction that has been previously paid for', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000027')
-        .get('#penalty-ref').type('00378426{enter}')
+        cy.enterTransactionDetails('10000027', '00378426')
 
         cy.get('.govuk-body-l').containsText('The penalty with a reference of 00378426 has been paid. No further action is required.')
     })
 
     it('Invalid payment reference number', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000025')
-        .get('#penalty-ref').type('123456{enter}')
+        cy.enterTransactionDetails('10000025', '123456')
 
         cy.get('#penaltyNumber-errorId').should('have.text', 'Enter your penalty reference exactly as shown on your penalty letter')
     })
 
     it('No payment reference number', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000025')
-        .get('#penalty-ref').type('{enter}')
+        cy.enterTransactionDetails('10000025', ' ')
     
-        cy.get('#penaltyNumber-errorId').should('have.text', 'You must enter a penalty reference')
+        cy.get('#penaltyNumber-errorId').should('have.text', 'Enter your penalty reference exactly as shown on your penalty letter')
     })
 
     it('No company number', () => {
         // Enter transaction details
-        cy.get('#company-ref').type(' ')
-        .get('#penalty-ref').type('00378425{enter}')
+        cy.enterTransactionDetails(' ', '00378425')
     
         cy.get('#companyNumber-errorId').should('have.text', 'You must enter your full eight character company number')
     })
 
     it('Unable to pay for transactions with more than one penalty', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('NI038379')
-        .get('#penalty-ref').type('00531369{enter}')
+        cy.enterTransactionDetails('NI038379', '00531369')
     
         cy.get('#page-title-heading').should('have.text', 'This penalty cannot be paid using this service')
     })
 
     it('Unable to pay for transactions when comany is in DCA', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000024')
-        .get('#penalty-ref').type('00378420{enter}')
+        cy.enterTransactionDetails('10000024', '00378420')
     
         cy.get('#page-title-heading').should('have.text', 'This penalty cannot be paid using this service')
     })
 
     it('Unable to pay for penalties that have been previously paid for', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000027')
-        .get('#penalty-ref').type('00378426{enter}')
+        cy.enterTransactionDetails('10000027', '00378426')
     
         cy.get('.govuk-body-l').containsText('The penalty with a reference of 00378426 has been paid. No further action is required.')
     })
 
     it('Unable to pay for penalties that have been part paid for', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('10000028')
-        .get('#penalty-ref').type('00388429{enter}')
+        cy.enterTransactionDetails('10000028', '00388429')
     
         cy.get('#page-title-heading').should('have.text', 'This penalty cannot be paid using this service')
     })
 
     it('Unable to pay for penalties that cannot be found in E5', () => {
         // Enter transaction details
-        cy.get('#company-ref').type('00000000')
-        .get('#penalty-ref').type('00388429{enter}')
+        cy.enterTransactionDetails('00000000', '00388429')
     
         cy.get('#page-title-heading').should('have.text', 'No penalty found')
     })
-
 
 })
