@@ -23,3 +23,15 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add(
+    'containsText',
+    {
+        prevSubject: true,
+    },
+    function(subject, expectedText) {
+        const text = subject[0].textContent.replace(/\s+/g, ' ');
+        cy.log(text);
+        expect(text).to.contain(expectedText);
+    }
+);
