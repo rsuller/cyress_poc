@@ -115,7 +115,7 @@ describe('CHS Developer Site', function() {
 
     })
 
-    it.only('GET list of Charges', function() {
+    it('GET list of Charges', function() {
         cy.contains('Charges').click()
         cy.get('#getChargeList').click()
 
