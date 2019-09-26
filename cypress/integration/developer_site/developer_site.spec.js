@@ -131,4 +131,21 @@ describe('CHS Developer Site', function() {
           })
 
     })
+
+    it('Officer Appointment List', function() {
+        cy.contains('Officer Appointment List').click()
+        cy.get('#appointmentList').click()
+
+        // Search for 00006400 and officer JvKcg6LSGvb8dtz5xV4qoukBkgU
+        cy.get('#officer_id').type('JvKcg6LSGvb8dtz5xV4qoukBkgU').get('#exploreButton').click()
+
+          // Check Success
+          cy.get('#response_code').should('have.text', '200 OK')
+
+          cy.get('#response_body').invoke('text').then((text) => {
+              cy.log(text)
+              expect(text).contains('"name": "Condition Gym Snailliquor LEWIS"')
+          })
+
+    })
 }) 
