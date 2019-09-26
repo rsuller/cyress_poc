@@ -9,7 +9,11 @@ beforeEach(function() {
     cy.signInToCHS()
 })
 
-describe('Company Profile', function() {
+after(function() {
+    cy.contains('Sign out').click()
+})
+
+describe('CHS Developer Site', function() {
     it('Search Company', function() {
         cy.contains('Search').click()
         cy.contains('Search company').click()
