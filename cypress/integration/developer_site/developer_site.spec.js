@@ -9,9 +9,6 @@ beforeEach(function() {
     cy.signInToCHS()
 })
 
-after(function() {
-    cy.contains('Sign out').click()
-})
 
 describe('CHS Developer Site', function() {
     it('Search Company', function() {
@@ -79,6 +76,58 @@ describe('CHS Developer Site', function() {
           cy.get('#response_body').invoke('text').then((text) => {
               cy.log(text)
               expect(text).contains('"name": "APPROVALLIQUOR, Daniel Aunt"')
+          })
+
+    })
+
+    it('GET Filing History by transaction', function() {
+        cy.contains('Filing history').click()
+        cy.get('#getFilingHistoryItem').click()
+
+        // Search for 00006400 and transaction OTYxMTUzMzQ4OGFkaXF6a2N4
+        cy.get('#company_number').type('00006400')
+        .get('#transaction_id').type('OTYxMTUzMzQ4OGFkaXF6a2N4').get('#exploreButton').click()
+
+          // Check Success
+          cy.get('#response_code').should('have.text', '200 OK')
+
+          cy.get('#response_body').invoke('text').then((text) => {
+              cy.log(text)
+              expect(text).contains('"transaction_id": "OTYxMTUzMzQ4OGFkaXF6a2N4"')
+          })
+
+    })
+
+    it('Insolvency', function() {
+        cy.contains('Insolvency').click()
+        cy.get('#readCompanyInsolvency').click()
+
+        // Search for 00006400 and transaction OTYxMTUzMzQ4OGFkaXF6a2N4
+        cy.get('#company_number').type('00006400').get('#exploreButton').click()
+
+          // Check Success
+          cy.get('#response_code').should('have.text', '404 Not Found')
+
+          cy.get('#response_body').invoke('text').then((text) => {
+              cy.log(text)
+              expect(text).contains('"error": "company-insolvencies-not-found"')
+          })
+
+    })
+
+    it.only('GET list of Charges', function() {
+        cy.contains('Charges').click()
+        cy.get('#getChargeList').click()
+
+        // Search for 00006400 and transaction OTYxMTUzMzQ4OGFkaXF6a2N4
+        cy.get('#company_number').type('00006400').get('#exploreButton').click()
+
+          // Check Success
+          cy.get('#response_code').should('have.text', '200 OK')
+
+          cy.get('#response_body').invoke('text').then((text) => {
+              cy.log(text)
+              expect(text).contains('"unfiltered_count": 14')
           })
 
     })
