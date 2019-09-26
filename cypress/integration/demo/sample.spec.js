@@ -5,8 +5,12 @@ const user = Cypress.env('user_email')
 const password = Cypress.env('user_password')
 
   describe('CHS Sign in Test', function() {
+    before(() => cy.visit(url))
+    beforeEach(() => cy.eyesOpen({appName: 'CHS', batchName: 'CHS TEST'}))
+    afterEach(() => cy.eyesClose())
+   
       it.only('Opens CHS service and signs in as authorised user', function() {
-          cy.visit(url)
+          cy.eyesCheckWindow('Sign in screen')
           
           // Sign into the CHS Service
           cy.get('#user-signin').click()

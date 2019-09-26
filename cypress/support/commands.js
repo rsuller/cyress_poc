@@ -40,3 +40,9 @@ Cypress.Commands.add('enterTransactionDetails', (companyNumber, penaltyReference
     cy.get('#company-ref').type(companyNumber)
         .get('#penalty-ref').type(penaltyReference + '{enter}')
 });
+
+Cypress.Commands.add('signInToCHS', ()=> {
+    cy.get('#signin_email').type(Cypress.env('user_email'))
+     .get('#password').type(Cypress.env('user_password'))
+     .get('#submit').click()
+})

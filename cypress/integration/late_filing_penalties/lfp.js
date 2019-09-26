@@ -15,9 +15,7 @@ beforeEach(function() {
      cy.get('#next-button').click()
  
      // Log in with demo user
-     cy.get('#signin_email').type(Cypress.env('user_email'))
-     .get('#password').type(Cypress.env('user_password'))
-     .get('#submit').click()
+     cy.signInToCHS()
 })
 
 // afterEach(() => cy.eyesClose())

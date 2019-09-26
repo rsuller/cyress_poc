@@ -2,7 +2,8 @@
     "env": {
         "url": "https://ernie.aws.chdev.org/",
         "user_email": "demo@ch.gov.uk",
-        "user_password": "password"
+        "user_password": "password",
+        "developer_site": "https://developer.kermit.aws.chdev.org/api/docs/"
     },
 
     "chromeWebSecurity": false
