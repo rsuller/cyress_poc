@@ -1,5 +1,9 @@
 /// <reference types="Cypress" />
 
+import CompaniesHouseAPIPage from '../pageObjects/CompaniesHouseAPIPage'
+import SearchCompaniesPage from '../pageObjects/SearchCompaniesPage'
+import ResultsPage from '../pageObjects/ResultsPage'
+
 const url = Cypress.env('developer_site')
 
 beforeEach(function() {
@@ -11,21 +15,19 @@ beforeEach(function() {
 
 
 describe('CHS Developer Site', function() {
-    it('Search Company', function() {
-        cy.contains('Search').click()
-        cy.contains('Search company').click()
+    const homePage = new CompaniesHouseAPIPage();
+    const searchCompaniesPage = new SearchCompaniesPage();
+    const resultsPage = new ResultsPage();
+
+    it.only('Search Company', function() {
+        homePage.searchCompany();
 
         // Search for 00006400
-        cy.get('#q').type('00006400').get('#exploreButton').click()
+        searchCompaniesPage.searchForCompany('00006400')
 
-          // Check Success
-          cy.get('#response_code').should('have.text', '200 OK')
-
-          cy.get('#response_body').invoke('text').then((text) => {
-              cy.log(text)
-              expect(text).contains('"title": "THE GIRLS\' DAY SCHOOL TRUST"')
-          })
-
+        // Check Success
+        resultsPage.checkStatusEquals('200 OK')
+        resultsPage.responseBodyShouldContain('title', 'THE GIRLS\' DAY SCHOOL TRUST')
     })
 
     it('GET company Profile', function() {
