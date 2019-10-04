@@ -1,7 +1,8 @@
 class ResultsPage {
 
     checkStatusEquals(statusText) {
-        return cy.get('#response_code').should('have.text', statusText)
+        cy.get('#response_code').should('have.text', statusText)
+        return this;
     }
 
     responseBodyShouldContain(key, value) {

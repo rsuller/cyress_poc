@@ -27,7 +27,7 @@ describe('CHS Developer Site', function() {
 
         // Check Success
         resultsPage.checkStatusEquals('200 OK')
-        resultsPage.responseBodyShouldContain('title', 'THE GIRLS\' DAY SCHOOL TRUST')
+        .responseBodyShouldContain('title', 'THE GIRLS\' DAY SCHOOL TRUST')
     })
 
     it('GET company Profile', function() {
