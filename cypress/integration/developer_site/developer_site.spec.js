@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-import CompaniesHouseAPIPage from '../pageObjects/CompaniesHouseAPIPage'
-import SearchCompaniesPage from '../pageObjects/SearchCompaniesPage'
-import ResultsPage from '../pageObjects/ResultsPage'
+import CompaniesHouseAPIPage from '../../support/pageObjects/CompaniesHouseAPIPage'
+import SearchCompaniesPage from '../../support/pageObjects/SearchCompaniesPage'
+import ResultsPage from '../../support/pageObjects/ResultsPage'
 
 const url = Cypress.env('developer_site')
 
