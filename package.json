@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "developer_site_tests": "npm run test -- --spec \"cypress/integration/developer_site/*\" --headed"
+    
   },
   "author": "rsuller",
   "license": "MIT",
