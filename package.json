@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cypress run",
     "cypress:open": "cypress open",
-    "developer_site_tests": "npm run test -- --spec \"cypress/integration/developer_site/*\" --headed"
+    "developer_site_tests": "npm run test -- --spec \"cypress/integration/developer_site/*\""
     
   },
   "author": "rsuller",
