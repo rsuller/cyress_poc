@@ -1,6 +1,8 @@
 # cyress_poc
 Automated testing with Cypress.io https://docs.cypress.io/
 
+> You will need to have nodeJs installed on your machine, please download [nodeJs](https://nodejs.org/en/download/)
+
 ### Open Cypress with
 `npm run cypress:open`
 
