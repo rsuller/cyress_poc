@@ -1,3 +1,4 @@
 node_modules
 file.log
 cypress\videos
+cypress/screenshots/
