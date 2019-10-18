@@ -29,6 +29,10 @@ describe('Change of registered office address', () => {
 
         // Check 13 officers are present
         cy.get('tbody  tr td:nth-child(4)  a').as('Edits')
+        /*
+        This will initiate a 'Change of details' for the expected officer
+        making this a CH01 test in reality
+        */
         cy.get('@Edits').each((element, index, $list) => {
             cy.get(element).invoke('text').then((text) => {
                 cy.log(text)
