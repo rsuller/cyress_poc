@@ -18,6 +18,15 @@ describe('Change of registered office address', () => {
         cy.contains('Directors and secretaries').click()
         cy.contains('Termination of appointment of director - TM01').click()
 
+        // Check to ensure the labels are present and correct
+        cy.get('.name').should('have.text', 'Name')
+        cy.get('.role').should('have.text', 'Role')
+        cy.get('.dob').should('have.text', 'Date of birth')
+        
+        // Check hidden columns
+        cy.checkForHiddenLabel('thead > :nth-child(2) > :nth-child(4)', 'Edit Links')
+        cy.checkForHiddenLabel('thead > :nth-child(2) > :nth-child(5)', 'Remove Links')
+
         // Check 13 officers are present
         cy.get('tbody  tr td:nth-child(4)  a').as('Edits')
         cy.get('@Edits').each((element, index, $list) => {

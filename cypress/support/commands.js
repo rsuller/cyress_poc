@@ -46,3 +46,11 @@ Cypress.Commands.add('signInToCHS', ()=> {
      .get('#password').type(Cypress.env('user_password'))
      .get('#submit').click()
 })
+
+Cypress.Commands.add('checkForHiddenLabel', ($el, text)=> {
+    cy.get($el).should('have.text', text)
+
+    cy.get($el).should((element) => {
+        expect(element).to.have.prop('hidden')
+    })
+})
